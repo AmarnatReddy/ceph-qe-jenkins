@@ -147,30 +147,52 @@ extended_regression:
     #       - 9.2
 
 # Commented out for now, as the upgrade tests need to be updated for the 10.0 release.
-# upgrade:
-#   metadata:
-#     cloud:
-#       - ibmc
-#       - aws
-#   suites:
-#     - name: "Test SMB upgrade IBMSC 8x to 9x latest"
-#       suite: suites/umbrella/smb/tier-0-smb-upgrade-ibm-8x-to-9x-latest.yaml
-#       global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
-#       platform:
-#         - rhel-9
-#       build:
-#         - ibm
-#     - name: "Test SMB upgrade IBMSC 9x to 9x latest"
-#       suite: suites/umbrella/smb/tier-0-smb-upgrade-ibm-9x-to-9x-latest.yaml
-#       global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
-#       platform:
-#         - rhel-9
-#       build:
-#         - ibm
-#     - name: "Test SMB upgrade IBMSC 8x to 9x latest with Casesensitivity Disable"
-#       suite: suites/umbrella/smb/tier-1-smb-disable-casesensitivity-upgrade-ibm-8x-to-9x-latest.yaml
-#       global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
-#       platform:
-#         - rhel-9
-#       build:
-#         - ibm
+upgrade:
+  metadata:
+    cloud:
+      - ibmc
+      - aws
+  suites:
+    - name: "Test SMB upgrade IBMSC 8.1GA to 10x latest"
+      suite: suites/umbrella/smb/tier-0-smb-upgrade-ibm-8.1-to-10x-latest.yaml
+      global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
+      vm-size:
+        ibmc: cx2-8x16
+        aws: m6g.xlarge
+      platform:
+        - rhel-9
+      build:
+        - ibm
+    - name: "Test SMB upgrade IBMSC 9.1GA to 10x latest"
+      suite: suites/umbrella/smb/tier-0-smb-upgrade-ibm-9.1-to-10x-latest.yaml
+      global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
+      vm-size:
+        ibmc: cx2-8x16
+        aws: m6g.xlarge
+      platform:
+        - rhel-9
+        - rhel-10
+      build:
+        - ibm
+    - name: "Test SMB upgrade IBMSC 9.2GA to 10x latest"
+      suite: suites/umbrella/smb/tier-0-smb-upgrade-ibm-9.2-to-10x-latest.yaml
+      global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
+      platform:
+        - rhel-9
+        - rhel-10
+      vm-size:
+        ibmc: cx2-8x16
+        aws: m6g.xlarge
+      build:
+        - ibm
+    - name: "Test SMB upgrade IBMSC 9.2GA to 10x latest with Case Sensitivity Disable"
+      suite: suites/umbrella/smb/tier-1-smb-disable-casesensitivity-upgrade-ibm-9x-to-10x-latest.yaml
+      global-conf: conf/umbrella/smb/1admin-4node-1client-cluster.yaml
+      platform:
+        - rhel-9
+        - rhel-10
+      vm-size:
+        ibmc: cx2-8x16
+        aws: m6g.xlarge
+      build:
+        - ibm
