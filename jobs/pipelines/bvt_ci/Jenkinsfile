@@ -197,8 +197,9 @@ pipeline {
                 }
 
                 echo "Send results to ${params.EMAIL_ADDRESS}"
-                // The build team requested to trigger SPS pipeline only for blue builds.
-                def boolPublishSPS = params.BUILD_TYPE?.toLowerCase() == "ibm"
+                // SPS bvt-result-verification disabled. Previously triggered for IBM (blue) builds only:
+                // def boolPublishSPS = params.BUILD_TYPE?.toLowerCase() == "ibm"
+                def boolPublishSPS = false
 
                 publishTestResults(
                     cephVersion: jobConfigs.cephVersion,
